@@ -4,7 +4,13 @@
 //Kestrel is placed behide IIS web server and that configuration is done by CreateBuilder(args)
 //Also is configured where to find executable code (specify content root)
 //Configuration information is read from appsettings.json
+using EfisPieShop.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+builder.Services.AddScoped<IPieRepository, MockPieRepository>();
 
 // Add services to the container.
 // Here we can our services
