@@ -1,3 +1,9 @@
+
+//CreateBuilder(args) will set up Kestrel web server
+//Kestrel will handle the requests
+//Kestrel is placed behide IIS web server and that configuration is done by CreateBuilder(args)
+//Also is configured where to find executable code (specify content root)
+//Configuration information is read from appsettings.json
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
