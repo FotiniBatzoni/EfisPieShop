@@ -1,6 +1,6 @@
 ﻿namespace EfisPieShop.Models
 {
-    public interface ICategory
+    public interface ICategoryRepository
     {
         IEnumerable<Category> AllCategories { get; }
     }
