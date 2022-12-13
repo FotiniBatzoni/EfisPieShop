@@ -25,15 +25,29 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// UseStaticFiles() is preconfigured to look for incoming requests for static files (.jpg, .jpeg, css)
+// and it will look in that default configured folder (wwwroot) for that static file and return it
 app.UseStaticFiles();
+
+
+if (app.Environment.IsDevelopment())
+{
+    // Enables us to see the errors of the application
+    // It's a dignostic middleware component that will not always show the exception page
+    app.UseDeveloperExceptionPage();
+}
+
 
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapDefaultControllerRoute();
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
 //To Here
 
 //Our application start listening for incomming requests
