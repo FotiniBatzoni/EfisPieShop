@@ -7,11 +7,16 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Here we can our services
+// .AddControllersWithViews() that's a Framework Service and extension methods exists
+//    that service make our application MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+//From Here
+// Middleware is set up
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -29,5 +34,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+//To Here
 
+//Our application start listening for incomming requests
 app.Run();
