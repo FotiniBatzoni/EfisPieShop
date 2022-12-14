@@ -10,7 +10,7 @@ namespace EfisPieShop.ViewModels
 
         public PieListViewModel(IEnumerable<Pie> pies, string? currentCategory)
         {
-            Pies = Pies;
+            Pies = pies;
             CurrentCategory = currentCategory;
         }
 
