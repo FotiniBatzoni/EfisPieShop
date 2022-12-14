@@ -1,4 +1,5 @@
 ﻿using EfisPieShop.Models;
+using EfisPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EfisPieShop.Controllers
@@ -22,8 +23,11 @@ namespace EfisPieShop.Controllers
         //Our first Action Method
         public IActionResult List()
         {
-            ViewBag.CurrentCategory = "Cheese cakes";
-            return View(_pieRepository.AllPies);  
+            //ViewBag.CurrentCategory = "Cheese cakes";
+            //return View(_pieRepository.AllPies);  
+
+            PieListViewModel piesListViewModel = new PieListViewModel(_pieRepository.AllPies, "Cheese cakes");
+            return View(piesListViewModel);
         }
     }
 }
