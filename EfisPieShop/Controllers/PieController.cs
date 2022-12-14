@@ -22,6 +22,7 @@ namespace EfisPieShop.Controllers
         //Our first Action Method
         public IActionResult List()
         {
+            ViewBag.CurrentCategory = "Cheese cakes";
             return View(_pieRepository.AllPies);  
         }
     }
