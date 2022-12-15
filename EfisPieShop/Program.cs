@@ -5,6 +5,7 @@
 //Also is configured where to find executable code (specify content root)
 //Configuration information is read from appsettings.json
 using EfisPieShop.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,12 @@ builder.Services.AddScoped<IPieRepository, MockPieRepository>();
 // .AddControllersWithViews() that's a Framework Service and extension methods exists
 //    that service make our application MVC
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<EfisPieShopDbContext>( options =>
+{
+    options.UseSqlServer(
+        builder.Configuration["ConnectionStrings:EfisPieShopDbContextConnection"]);
+});
 
 var app = builder.Build();
 
