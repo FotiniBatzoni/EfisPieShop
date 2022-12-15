@@ -63,5 +63,7 @@ app.MapDefaultControllerRoute();
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
 //To Here
 
+DbInitializer.Seed(app);
+
 //Our application start listening for incomming requests
 app.Run();
