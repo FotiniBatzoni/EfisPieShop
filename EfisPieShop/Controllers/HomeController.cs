@@ -1,4 +1,5 @@
 ﻿using EfisPieShop.Models;
+using EfisPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EfisPieShop.Controllers
@@ -19,7 +20,9 @@ namespace EfisPieShop.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var piesOfTheWeek = _pieRepository.PiesOfTheWeek;
+            var homeViewModel = new HomeViewModel(piesOfTheWeek);
+            return View(homeViewModel);
         }
     }
 }
