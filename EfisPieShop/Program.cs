@@ -56,11 +56,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
+app.MapDefaultControllerRoute(); //"{controller=Home}/{action=Index}/{id?}"
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 //To Here
 
 DbInitializer.Seed(app);
