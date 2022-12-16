@@ -13,6 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 
+//This will invoke the GetCart method, passing in the service provider
+//AddScoped is going to create a ShoppingCart for the request, so all the places within the request that have access to ShoppingCart
+// will use the same ShoppingCart that get instantiated in the GetCart method
+builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+builder.Services.AddSession();                          //it is used in GetCard method
+builder.Services.AddHttpContextAccessor();               //it is used in GetCard method
+
 // Add services to the container.
 // Here we can our services
 // .AddControllersWithViews() that's a Framework Service and extension methods exists
@@ -42,6 +49,10 @@ app.UseHttpsRedirection();
 // UseStaticFiles() is preconfigured to look for incoming requests for static files (.jpg, .jpeg, css)
 // and it will look in that default configured folder (wwwroot) for that static file and return it
 app.UseStaticFiles();
+
+
+//Needed middleware because of builder.Services.AddSession();     
+app.UseSession();
 
 
 if (app.Environment.IsDevelopment())
