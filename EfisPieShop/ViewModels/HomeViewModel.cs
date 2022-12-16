@@ -4,11 +4,11 @@ namespace EfisPieShop.ViewModels
 {
     public class HomeViewModel
     {
-        public IEnumerable<Pie> PiesOfWeek { get; }
+        public IEnumerable<Pie> PiesOfTheWeek { get; }
 
         public HomeViewModel(IEnumerable<Pie> piesOfTheWeek)
         {
-            PiesOfWeek = piesOfTheWeek;
+            PiesOfTheWeek = piesOfTheWeek;
         }
     }
 }
