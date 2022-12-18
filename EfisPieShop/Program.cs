@@ -12,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 //This will invoke the GetCart method, passing in the service provider
 //AddScoped is going to create a ShoppingCart for the request, so all the places within the request that have access to ShoppingCart

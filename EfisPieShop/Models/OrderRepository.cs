@@ -1,6 +1,6 @@
 ﻿namespace EfisPieShop.Models
 {
-    public class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly EfisPieShopDbContext _efisPieShopDbContext;
         private readonly IShoppingCart _shoppingCart;
