@@ -28,6 +28,9 @@ builder.Services.AddHttpContextAccessor();               //it is used in GetCard
 //    that service make our application MVC
 builder.Services.AddControllersWithViews();
 
+// To Add Razor Pages
+builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<EfisPieShopDbContext>( options =>
 {
     options.UseSqlServer(
@@ -75,6 +78,9 @@ app.MapDefaultControllerRoute(); //"{controller=Home}/{action=Index}/{id?}"
 //    name: "default",
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
 //To Here
+
+// Middleware for Razor Pages
+app.MapRazorPages();
 
 DbInitializer.Seed(app);
 
