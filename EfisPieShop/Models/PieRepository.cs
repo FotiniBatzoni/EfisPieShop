@@ -35,5 +35,10 @@ namespace EfisPieShop.Models
              return _efisPieShopDbContext.Pies.FirstOrDefault(p=> p.PieId == pieId);
 
         }
+
+        public IEnumerable<Pie> SearchPies(string searchQuery)
+        {
+            return _efisPieShopDbContext.Pies.Where(p => p.Name.Contains(searchQuery));
+        }
     }
 }
