@@ -37,6 +37,9 @@ builder.Services.AddDbContext<EfisPieShopDbContext>( options =>
         builder.Configuration["ConnectionStrings:EfisPieShopDbContextConnection"]);
 });
 
+// It's needed in order to have a RESTful API
+//builder.Services.AddControllers();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -81,6 +84,9 @@ app.MapDefaultControllerRoute(); //"{controller=Home}/{action=Index}/{id?}"
 
 // Middleware for Razor Pages
 app.MapRazorPages();
+
+//Middleware for Routing for a RESTful API
+//app.MapControllers();
 
 DbInitializer.Seed(app);
 
