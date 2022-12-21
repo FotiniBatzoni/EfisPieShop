@@ -18,7 +18,8 @@ namespace EfisPieShop.Controllers.Api
         [HttpGet]
         public IActionResult GetAll()
         {
-
+            var allPies = _pieRepository.AllPies;
+            return Ok(allPies);
         }
 
         [HttpGet("{id}")]
