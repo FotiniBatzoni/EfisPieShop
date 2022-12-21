@@ -6,6 +6,7 @@
 //Configuration information is read from appsettings.json
 using EfisPieShop.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,11 @@ builder.Services.AddHttpContextAccessor();               //it is used in GetCard
 // Here we can our services
 // .AddControllersWithViews() that's a Framework Service and extension methods exists
 //    that service make our application MVC
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>   // That's for API and ignore cycles between category and pie 
+    {
+        options.JsonSerializerOptions.ReferenceHandler= ReferenceHandler.IgnoreCycles; ;
+    });
 
 // To Add Razor Pages
 builder.Services.AddRazorPages();
