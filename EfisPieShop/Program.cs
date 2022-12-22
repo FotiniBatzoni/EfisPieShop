@@ -42,6 +42,9 @@ builder.Services.AddDbContext<EfisPieShopDbContext>( options =>
         builder.Configuration["ConnectionStrings:EfisPieShopDbContextConnection"]);
 });
 
+// To add Blazor to our app
+builder.Services.AddServerSideBlazor();
+
 // It's needed in order to have a RESTful API
 //builder.Services.AddControllers();
 
@@ -89,6 +92,10 @@ app.MapDefaultControllerRoute(); //"{controller=Home}/{action=Index}/{id?}"
 
 // Middleware for Razor Pages
 app.MapRazorPages();
+
+// Enable Blazor in the pipeline
+app.MapBlazorHub();
+app.MapFallbackToPage("/app/{*catchall}", "/App/Index");
 
 //Middleware for Routing for a RESTful API
 //app.MapControllers();
