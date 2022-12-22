@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace EfisPieShop.Models
 {
-    public class EfisPieShopDbContext : DbContext
+    public class EfisPieShopDbContext : IdentityDbContext
     {
         public EfisPieShopDbContext(DbContextOptions<EfisPieShopDbContext> options) : base(options)
         {
