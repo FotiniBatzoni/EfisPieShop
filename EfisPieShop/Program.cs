@@ -70,6 +70,9 @@ app.UseStaticFiles();
 //Needed middleware because of builder.Services.AddSession();     
 app.UseSession();
 
+//Authentication Middleware for Identity
+app.UseAuthentication();
+
 
 if (app.Environment.IsDevelopment())
 {
