@@ -62,5 +62,10 @@ namespace EfisPieShop.Controllers
                 return View(pie);
             }
         }
+
+        public IActionResult Search()
+        {
+            return View();
+        }
     }
 }
