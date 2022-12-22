@@ -7,8 +7,19 @@
 using EfisPieShop.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("EfisPieShopDbContextConnection") ?? 
+        throw new InvalidOperationException("Connection string 'EfisPieShopDbContextConnection' not found.");
+
+//For Identity
+builder.Services.AddDbContext<EfisPieShopDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+//For Identity
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddEntityFrameworkStores<EfisPieShopDbContext>();
 
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -41,6 +52,9 @@ builder.Services.AddDbContext<EfisPieShopDbContext>( options =>
     options.UseSqlServer(
         builder.Configuration["ConnectionStrings:EfisPieShopDbContextConnection"]);
 });
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<EfisPieShopDbContext>();
 
 // To add Blazor to our app
 builder.Services.AddServerSideBlazor();
