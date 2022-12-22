@@ -102,6 +102,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthorization(); 
 
 app.MapDefaultControllerRoute(); //"{controller=Home}/{action=Index}/{id?}"
 
