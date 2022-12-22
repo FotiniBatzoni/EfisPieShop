@@ -22,6 +22,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<EfisPieShopDbContext>();
 
 
+//OR
+//builder.Services.AddDbContext<EfisPieShopDbContext>(options =>
+//{
+//    options.UseSqlServer(
+//        builder.Configuration["ConnectionStrings:EfisPieShopDbContextConnection"]);
+//});
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<EfisPieShopDbContext>();
+
+
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
@@ -47,14 +58,6 @@ builder.Services.AddControllersWithViews()
 // To Add Razor Pages
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<EfisPieShopDbContext>( options =>
-{
-    options.UseSqlServer(
-        builder.Configuration["ConnectionStrings:EfisPieShopDbContextConnection"]);
-});
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<EfisPieShopDbContext>();
 
 // To add Blazor to our app
 builder.Services.AddServerSideBlazor();
