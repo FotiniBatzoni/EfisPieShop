@@ -16,6 +16,7 @@ namespace EfisPieShopTests.Mocks
             {
                 new Pie
                 {
+                    PieId = 1,
                     Name = "Apple Pie",
                     Price = 12.95M,
                     ShortDescription = "Our famous apple pies!",
@@ -30,6 +31,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 2,
                     Name = "Blueberry Cheese Cake",
                     Price = 18.95M,
                     ShortDescription = "You'll love it!",
@@ -45,6 +47,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 3,
                     Name = "Cheese Cake",
                     Price = 18.95M,
                     ShortDescription = "Plain cheese cake. Plain pleasure.",
@@ -59,6 +62,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 4,
                     Name = "Cherry Pie",
                     Price = 15.95M,
                     ShortDescription = "A summer classic!",
@@ -73,6 +77,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 5,
                     Name = "Christmas Apple Pie",
                     Price = 13.95M,
                     ShortDescription = "Happy holidays with this pie!",
@@ -88,6 +93,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 6,
                     Name = "Cranberry Pie",
                     Price = 17.95M,
                     ShortDescription = "A Christmas favorite",
@@ -103,6 +109,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 7,
                     Name = "Peach Pie",
                     Price = 15.95M,
                     ShortDescription = "Sweet as peach",
@@ -117,6 +124,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 8,
                     Name = "Pumpkin Pie",
                     Price = 12.95M,
                     ShortDescription = "Our Halloween favorite",
@@ -131,6 +139,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 9,
                     Name = "Rhubarb Pie",
                     Price = 15.95M,
                     ShortDescription = "My God, so sweet!",
@@ -145,6 +154,7 @@ namespace EfisPieShopTests.Mocks
                 },
                 new Pie
                 {
+                    PieId = 10,
                     Name = "Strawberry Pie",
                     Price = 15.95M,
                     ShortDescription = "Our delicious strawberry pie!",
@@ -163,7 +173,12 @@ namespace EfisPieShopTests.Mocks
             var mockPieRepository = new Mock<IPieRepository>();
             mockPieRepository.Setup(repo => repo.AllPies).Returns(pies);
             mockPieRepository.Setup(repo => repo.PiesOfTheWeek).Returns(pies.Where(p => (bool)p.IsPieOfTheWeek));
-            mockPieRepository.Setup(repo => repo.GetPieById(It.IsAny<int>())).Returns(pies[0]);
+            mockPieRepository.Setup(repo => repo.GetPieById(It.IsAny<int>())).Returns((int i) => {
+                if (i == 0)
+                    return null;
+                else
+                    return pies[0];
+            });
             return mockPieRepository;
         }
 
