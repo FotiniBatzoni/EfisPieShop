@@ -30,5 +30,59 @@ namespace EfisPieShopTests.Controllers
             var pieListViewModel = Assert.IsAssignableFrom<PieListViewModel>(viewResult.ViewData.Model);
             Assert.Equal(10, pieListViewModel.Pies.Count());
         }
+
+        [Fact]
+        public void List_Category_CheeseCakes_ReturnsPiesOfCategory()
+        {
+            //Arrange
+            var mockPieRepository = RepositoryMocks.GetPieRepository();
+            var mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+
+            var pieController = new PieController(mockPieRepository.Object, mockCategoryRepository.Object);
+
+            //Act
+            var result = pieController.List("Cheese cakes");
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var pieListViewModel = Assert.IsAssignableFrom<PieListViewModel>(viewResult.ViewData.Model);
+            Assert.Equal(2, pieListViewModel.Pies.Count());
+        }
+
+        [Fact]
+        public void List_Category_FruitPies_ReturnsPiesOfCategory()
+        {
+            //Arrange
+            var mockPieRepository = RepositoryMocks.GetPieRepository();
+            var mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+
+            var pieController = new PieController(mockPieRepository.Object, mockCategoryRepository.Object);
+
+            //Act
+            var result = pieController.List("Fruit pies");
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var pieListViewModel = Assert.IsAssignableFrom<PieListViewModel>(viewResult.ViewData.Model);
+            Assert.Equal(5, pieListViewModel.Pies.Count());
+        }
+
+        [Fact]
+        public void List_Category_SeasonalPies_ReturnsPiesOfCategory()
+        {
+            //Arrange
+            var mockPieRepository = RepositoryMocks.GetPieRepository();
+            var mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+
+            var pieController = new PieController(mockPieRepository.Object, mockCategoryRepository.Object);
+
+            //Act
+            var result = pieController.List("Seasonal pies");
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var pieListViewModel = Assert.IsAssignableFrom<PieListViewModel>(viewResult.ViewData.Model);
+            Assert.Equal(3, pieListViewModel.Pies.Count());
+        }
     }
 }
