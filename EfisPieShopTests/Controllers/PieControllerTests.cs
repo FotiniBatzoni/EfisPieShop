@@ -84,5 +84,23 @@ namespace EfisPieShopTests.Controllers
             var pieListViewModel = Assert.IsAssignableFrom<PieListViewModel>(viewResult.ViewData.Model);
             Assert.Equal(3, pieListViewModel.Pies.Count());
         }
+
+        [Fact]
+        public void List_Category_IncorrectCategoryName_ReturnsPiesOfCategory()
+        {
+            //Arrange
+            var mockPieRepository = RepositoryMocks.GetPieRepository();
+            var mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+
+            var pieController = new PieController(mockPieRepository.Object, mockCategoryRepository.Object);
+
+            //Act
+            var result = pieController.List("pies");
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var pieListViewModel = Assert.IsAssignableFrom<PieListViewModel>(viewResult.ViewData.Model);
+            Assert.Equal(0, pieListViewModel.Pies.Count());
+        }
     }
 }
