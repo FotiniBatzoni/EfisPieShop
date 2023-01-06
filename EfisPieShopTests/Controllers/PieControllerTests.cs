@@ -1,4 +1,5 @@
 ﻿using EfisPieShop.Controllers;
+using EfisPieShop.Models;
 using EfisPieShop.ViewModels;
 using EfisPieShopTests.Mocks;
 using Microsoft.AspNetCore.Mvc;
@@ -119,5 +120,23 @@ namespace EfisPieShopTests.Controllers
             var viewResult = Assert.IsType<NotFoundResult>(result);
         }
 
+        [Fact]
+        public void Details_If_Exists_ReturnsPie()
+        {
+            //Arrange
+            var mockPieRepository = RepositoryMocks.GetPieRepository();
+            var mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+
+            var pieController = new PieController(mockPieRepository.Object, mockCategoryRepository.Object);
+
+            //Act
+            var result = pieController.Details(1);
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var pieDetails = Assert.IsAssignableFrom<Pie>(viewResult.ViewData.Model); //????
+            Assert.Equal("Apple Pie", pieDetails.Name);
+
+        }
     }
 }
